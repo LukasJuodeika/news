@@ -12,5 +12,8 @@ ext {
 
             timber           : "4.7.1",
             junit            : "4.12",
+            rxJava2          : "2.2.10",
+            rxAndroid        : "2.1.0",
+            retrofit         : "2.5.0",
     ]
 }
