@@ -1,15 +1,12 @@
 package lt.lukas.newsapp.articlelist
 
 import lt.lukas.newsapp.entities.Article
+import lt.lukas.newsapp.exceptions.ErrorDisplay
 
 interface ArticleListContract {
 
-    interface View {
+    interface View : ErrorDisplay {
         fun viewArticles(list: List<Article>)
-
-        fun viewError()
-
-        fun viewNoInternet()
 
         fun viewLoader()
 

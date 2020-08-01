@@ -5,6 +5,7 @@ import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import lt.lukas.newsapp.Mocks
 import lt.lukas.newsapp.entities.Article
+import lt.lukas.newsapp.exceptions.NetworkExceptionResolver
 import lt.lukas.newsapp.repositories.NewsRepository
 import org.junit.Before
 import org.junit.Test
@@ -19,6 +20,9 @@ class ArticleListPresenterTest {
     @Mock
     lateinit var view: ArticleListContract.View
 
+    @Mock
+    lateinit var exceptionResolver: NetworkExceptionResolver
+
     lateinit var presenter: ArticleListPresenter
 
     val scheduler = Schedulers.trampoline()
@@ -28,6 +32,7 @@ class ArticleListPresenterTest {
         MockitoAnnotations.initMocks(this)
         presenter = ArticleListPresenter(
             newsRepository,
+            exceptionResolver,
             view,
             scheduler,
             scheduler
@@ -48,7 +53,7 @@ class ArticleListPresenterTest {
         verify(view).viewLoader()
         verify(view).hideLoader()
         verify(view).viewArticles(articles)
-        verify(view, never()).viewError()
+        verify(exceptionResolver, never()).exception(any())
     }
 
     @Test
@@ -64,7 +69,6 @@ class ArticleListPresenterTest {
         verify(view).viewLoader()
         verify(view).hideLoader()
         verify(view, never()).viewArticles(any())
-        verify(view).viewError()
+        verify(exceptionResolver).exception(any())
     }
-
 }

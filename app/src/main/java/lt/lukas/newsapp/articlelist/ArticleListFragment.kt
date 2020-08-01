@@ -4,14 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.fragment_article_list.*
 import kotlinx.android.synthetic.main.fragment_article_list.view.*
 import lt.lukas.newsapp.R
 import lt.lukas.newsapp.appComponent
 import lt.lukas.newsapp.entities.Article
+import lt.lukas.newsapp.exceptions.NetworkExceptionResolver
 import lt.lukas.newsapp.repositories.NewsRepository
 import javax.inject.Inject
 
@@ -36,8 +39,10 @@ class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener,
     ): View? {
         val view = inflater.inflate(R.layout.fragment_article_list, container, false)
         setupRecyclerView(view)
+        view.swipeRefreshLayout.setOnRefreshListener { presenter.refreshData() }
         presenter = ArticleListPresenter(
             newsRepository,
+            NetworkExceptionResolver(this),
             this,
             Schedulers.io(),
             AndroidSchedulers.mainThread()
@@ -60,20 +65,19 @@ class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener,
         adapter.updateList(list)
     }
 
-    override fun viewError() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun showNoInternetError() {
+        Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show() // TODO implement
     }
 
-    override fun viewNoInternet() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun showUnableToFetchData() {
+        Toast.makeText(context, "Unable to fetch data", Toast.LENGTH_SHORT).show() // TODO implement
     }
 
     override fun viewLoader() {
-
     }
 
     override fun hideLoader() {
-
+        swipeRefreshLayout.isRefreshing = false
     }
 
     override fun openArticle(article: Article) {
