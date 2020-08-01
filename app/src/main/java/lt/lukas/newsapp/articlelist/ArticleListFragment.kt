@@ -1,4 +1,4 @@
-package lt.lukas.newsapp.newslist
+package lt.lukas.newsapp.articlelist
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,9 +15,12 @@ import lt.lukas.newsapp.entities.Article
 import lt.lukas.newsapp.repositories.NewsRepository
 import javax.inject.Inject
 
-class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener {
+class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener,
+    ArticleListContract.View {
 
     private lateinit var adapter: ArticleListAdapter
+
+    private lateinit var presenter: ArticleListContract.Presenter
 
     @Inject
     lateinit var newsRepository: NewsRepository
@@ -33,6 +36,13 @@ class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_article_list, container, false)
         setupRecyclerView(view)
+        presenter = ArticleListPresenter(
+            newsRepository,
+            this,
+            Schedulers.io(),
+            AndroidSchedulers.mainThread()
+        )
+        presenter.refreshData()
         return view
     }
 
@@ -40,15 +50,33 @@ class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener {
         view.recycler.layoutManager = LinearLayoutManager(activity)
         adapter = ArticleListAdapter(requireContext(), emptyList<Article>(), this)
         view.recycler.adapter = adapter
-        newsRepository.fetchTopHeadlines()//temp implementation
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                adapter.updateList(it)
-            }, {})
     }
 
     override fun onItemClick(article: Article) {
+        presenter.itemClick(article)
+    }
+
+    override fun viewArticles(list: List<Article>) {
+        adapter.updateList(list)
+    }
+
+    override fun viewError() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun viewNoInternet() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun viewLoader() {
+
+    }
+
+    override fun hideLoader() {
+
+    }
+
+    override fun openArticle(article: Article) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 }

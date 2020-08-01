@@ -1,5 +1,6 @@
 package lt.lukas.newsapp
 
+import lt.lukas.newsapp.entities.Article
 import lt.lukas.newsapp.network.entities.ArticleData
 import lt.lukas.newsapp.network.entities.SourceData
 
@@ -14,13 +15,30 @@ object Mocks {
         url: String? = "url",
         urlToImage: String? = "urlToImage",
         publishedAt: String? = "publishedAt"
-
     ) : ArticleData {
         return ArticleData(
             source = SourceData(
                 id = sourceId,
                 name = sourceName
             ),
+            author = author,
+            title = title,
+            description = description,
+            url = url,
+            urlToImage = urlToImage,
+            publishedAt = publishedAt
+        )
+    }
+
+    fun article(
+        author: String = "author",
+        title: String = "title",
+        description: String = "description",
+        url: String = "url",
+        urlToImage: String = "urlToImage",
+        publishedAt: String = "publishedAt"
+    ) : Article {
+        return Article(
             author = author,
             title = title,
             description = description,

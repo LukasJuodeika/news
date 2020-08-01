@@ -1,4 +1,4 @@
-package lt.lukas.newsapp.newslist
+package lt.lukas.newsapp.articlelist
 
 import android.content.Context
 import android.view.LayoutInflater

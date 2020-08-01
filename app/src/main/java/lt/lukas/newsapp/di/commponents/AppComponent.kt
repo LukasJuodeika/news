@@ -8,7 +8,7 @@ import lt.lukas.newsapp.MainActivity
 import lt.lukas.newsapp.di.modules.NetworkModule
 import lt.lukas.newsapp.di.modules.ServiceModule
 import lt.lukas.newsapp.di.modules.StorageModule
-import lt.lukas.newsapp.newslist.ArticleListFragment
+import lt.lukas.newsapp.articlelist.ArticleListFragment
 import javax.inject.Singleton
 
 @Singleton
