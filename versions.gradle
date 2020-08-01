@@ -17,5 +17,6 @@ ext {
             rxJava2          : "2.2.10",
             rxAndroid        : "2.1.1",
             retrofit         : "2.5.0",
+            dagger2          : "2.28.3",
     ]
 }

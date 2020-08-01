@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-kapt'
+
 apply plugin: 'kotlin-android-extensions'
 
 apply from: rootProject.file("versions.gradle")
@@ -24,6 +26,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    flavorDimensions "app"
+
+    productFlavors {
+        newsapi {
+            buildConfigField "String", "BASE_URL", '"http://newsapi.org"'
+            buildConfigField "String", "API_KEY", '"57a79eac5a8f44efa2bd3408139b83f3"'
+        }
+    }
 }
 
 dependencies {
@@ -38,6 +49,9 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
     implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
+    api "com.google.dagger:dagger:$versions.dagger2"
+    kapt "com.google.dagger:dagger-android-processor:$versions.dagger2"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger2"
 
     testImplementation "junit:junit:$versions.junit"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockito_kotlin}"
