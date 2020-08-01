@@ -8,6 +8,7 @@ import lt.lukas.newsapp.MainActivity
 import lt.lukas.newsapp.di.modules.NetworkModule
 import lt.lukas.newsapp.di.modules.ServiceModule
 import lt.lukas.newsapp.di.modules.StorageModule
+import lt.lukas.newsapp.newslist.ArticleListFragment
 import javax.inject.Singleton
 
 @Singleton
@@ -31,4 +32,5 @@ interface AppComponent {
 
     fun inject(app: BaseApplication)
     fun inject(mainActivity: MainActivity)
+    fun inject(articleListFragment: ArticleListFragment)
 }

@@ -57,6 +57,9 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$versions.dagger2"
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$versions.nav_version"
     implementation "androidx.cardview:cardview:$versions.card_view"
+    implementation "androidx.recyclerview:recyclerview:$versions.recycler_view"
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    kapt "com.github.bumptech.glide:compiler:$versions.glide"
 
     testImplementation "junit:junit:$versions.junit"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockito_kotlin}"
