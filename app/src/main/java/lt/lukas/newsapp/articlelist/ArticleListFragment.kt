@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -81,6 +82,8 @@ class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener,
     }
 
     override fun openArticle(article: Article) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        findNavController().navigate(
+            ArticleListFragmentDirections.actionNewsListFragmentToArticleFragment(article)
+        )
     }
 }
