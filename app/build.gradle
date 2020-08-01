@@ -56,6 +56,7 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$versions.dagger2"
     kapt "com.google.dagger:dagger-compiler:$versions.dagger2"
     implementation "androidx.navigation:navigation-dynamic-features-fragment:$versions.nav_version"
+    implementation "androidx.cardview:cardview:$versions.card_view"
 
     testImplementation "junit:junit:$versions.junit"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockito_kotlin}"
