@@ -6,6 +6,8 @@ apply plugin: 'kotlin-kapt'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
 apply from: rootProject.file("versions.gradle")
 
 
@@ -41,7 +43,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "androidx.appcompat:appcompat:$versions.appcompat"
     implementation "androidx.constraintlayout:constraintlayout:$versions.contstraintLayout"
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
     implementation "androidx.core:core-ktx:$versions.androidCoreKtx"
     implementation "com.jakewharton.timber:timber:$versions.timber"
     implementation "io.reactivex.rxjava2:rxjava:$versions.rxJava2"
@@ -50,8 +52,10 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
     api "com.google.dagger:dagger:$versions.dagger2"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "com.google.dagger:dagger-android-processor:$versions.dagger2"
     kapt "com.google.dagger:dagger-compiler:$versions.dagger2"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$versions.nav_version"
 
     testImplementation "junit:junit:$versions.junit"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockito_kotlin}"
