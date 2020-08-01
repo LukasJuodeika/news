@@ -40,4 +40,6 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit"
 
     testImplementation "junit:junit:$versions.junit"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockito_kotlin}"
+    testImplementation "org.assertj:assertj-core:${versions.assertj}"
 }

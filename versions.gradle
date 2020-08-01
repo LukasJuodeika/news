@@ -12,8 +12,10 @@ ext {
 
             timber           : "4.7.1",
             junit            : "4.12",
+            assertj          : "3.16.1",
+            mockito_kotlin   : "2.2.0",
             rxJava2          : "2.2.10",
-            rxAndroid        : "2.1.0",
+            rxAndroid        : "2.1.1",
             retrofit         : "2.5.0",
     ]
 }
