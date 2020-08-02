@@ -1,5 +1,6 @@
 package lt.lukas.newsapp.article
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_article.*
 import kotlinx.android.synthetic.main.fragment_article.view.*
+import lt.lukas.newsapp.Constants
 import lt.lukas.newsapp.R
 import lt.lukas.newsapp.entities.Article
 
@@ -26,7 +28,7 @@ class ArticleFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_article, container, false)
         view.collapsingToolbar.setExpandedTitleColor(Color.TRANSPARENT)
-        view.toolbar.setNavigationOnClickListener { activity?.onBackPressed()}
+        view.toolbar.setNavigationOnClickListener { activity?.onBackPressed() }
         loadArticle(view, args.article)
         return view
     }
@@ -37,14 +39,30 @@ class ArticleFragment : Fragment() {
     }
 
     private fun loadArticle(view: View, article: Article) {
-        view.textViewTitle.text = article.title
-        view.textViewDescription.text = article.description
-        view.textViewAuthor.text = article.author
-        view.textViewDate.text = article.publishedAt
+        view.apply {
+            textViewTitle.text = article.title
+            textViewDescription.text = article.description
+            textViewAuthor.text = article.author
+            textViewDate.text = article.publishedAt
+            buttonReadFullArticle.setOnClickListener {
+                viewOnChrome(article.url)
+            }
+        }
         Glide.with(this).load(article.urlToImage).into(view.imageView)
-        view.buttonReadFullArticle.setOnClickListener {
-            val uri = Uri.parse(article.url)
+    }
+
+    /**
+     * Opens url on Chrome browswer. If chrome browswer is not available, uses default.
+     */
+    private fun viewOnChrome(url: String) {
+        val uri = Uri.parse(url)
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        intent.setPackage(Constants.GOOGLE_CHROME_PACKAGE)
+        try {
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
             startActivity(Intent(Intent.ACTION_VIEW, uri))
         }
     }
+
 }
