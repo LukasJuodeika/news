@@ -5,9 +5,6 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
@@ -105,15 +102,15 @@ class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener,
     override fun onItemClick(view: View, article: Article) {
         findNavController().navigate(
             ArticleListFragmentDirections.actionNewsListFragmentToArticleFragment(article),
-            FragmentNavigatorExtras( view.imageViewThumbnail to article.url)
+            FragmentNavigatorExtras(view.imageViewThumbnail to article.url)
         )
     }
 
     override fun viewArticles(list: List<Article>) {
         articles = list
         adapter.updateList(list)
-        (groupError as Group).visibility = View.GONE
-        (groupList as Group).visibility = View.VISIBLE
+        groupError.visibility = View.GONE
+        groupList.visibility = View.VISIBLE
         if (layoutManagerState != null) {
             (recycler as RecyclerView).layoutManager?.onRestoreInstanceState(layoutManagerState)
             layoutManagerState = null
@@ -129,19 +126,19 @@ class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener,
     }
 
     override fun viewLoader() {
-        (groupError as Group).visibility = View.GONE
-        (groupLoader as Group).visibility = View.VISIBLE
+        groupError.visibility = View.GONE
+        groupLoader.visibility = View.VISIBLE
     }
 
     override fun hideLoader() {
         swipeRefreshLayout.isRefreshing = false
-        (groupLoader as Group).visibility = View.GONE
+        groupLoader.visibility = View.GONE
     }
 
     private fun showError(message: String) {
         textViewError.text = message
-        (groupError as Group).visibility = View.VISIBLE
-        (groupList as Group).visibility = View.GONE
+        groupError.visibility = View.VISIBLE
+        groupList.visibility = View.GONE
     }
 
     companion object {
