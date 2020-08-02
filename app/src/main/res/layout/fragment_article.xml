@@ -1,13 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
     tools:context=".article.ArticleFragment">
 
     <TextView
+        android:id="@+id/textViewTitle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello ArticleFragment!" />
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit,"/>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textViewDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation u"/>
+
+    <TextView
+        android:id="@+id/textViewAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:paddingTop="4dp"
+        tools:text="Lukas Juodeika"/>
+
+    <TextView
+        android:id="@+id/textViewDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:paddingTop="4dp"
+        tools:text="2017-May-02 09:17"/>
+
+    <Button
+        android:id="@+id/buttonReadFullArticle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="4dp"
+        android:text="@string/read_full_article_online"
+        />
+
+</LinearLayout>
