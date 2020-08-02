@@ -1,5 +1,6 @@
 package lt.lukas.newsapp.transformers
 
+import lt.lukas.newsapp.DateFormatters
 import lt.lukas.newsapp.entities.Article
 import lt.lukas.newsapp.network.entities.NewsResponse
 
@@ -15,7 +16,7 @@ object NewsResponseTranformer {
                     description = articleData.description ?: "",
                     url = articleData.url ?: "",
                     urlToImage = articleData.urlToImage ?: "",
-                    publishedAt = articleData.publishedAt ?: ""
+                    publishedAt = DateFormatters.formatNewsapiDate(articleData.publishedAt ?: "")
                 )
             }
             .toList()

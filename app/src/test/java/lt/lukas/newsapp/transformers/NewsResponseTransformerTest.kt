@@ -32,7 +32,7 @@ class NewsResponseTransformerTest {
                 description = "description",
                 url = "url",
                 urlToImage = "urlToImage",
-                publishedAt = "publishedAt"
+                publishedAt = ""
             )
         )
     }
