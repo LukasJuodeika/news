@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.constraintlayout.widget.Group
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,6 +41,7 @@ class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener,
         val view = inflater.inflate(R.layout.fragment_article_list, container, false)
         setupRecyclerView(view)
         view.swipeRefreshLayout.setOnRefreshListener { presenter.refreshData() }
+        view.buttonRetry.setOnClickListener { presenter.refreshData() }
         presenter = ArticleListPresenter(
             newsRepository,
             NetworkExceptionResolver(this),
@@ -48,8 +49,12 @@ class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener,
             Schedulers.io(),
             AndroidSchedulers.mainThread()
         )
-        presenter.refreshData()
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        presenter.refreshData()
     }
 
     private fun setupRecyclerView(view: View) {
@@ -74,26 +79,37 @@ class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener,
 
     override fun viewArticles(list: List<Article>) {
         adapter.updateList(list)
+        (groupError as Group).visibility = View.GONE
+        (groupList as Group).visibility = View.VISIBLE
     }
 
     override fun showNoInternetError() {
-        Toast.makeText(context, "No Internet", Toast.LENGTH_SHORT).show() // TODO implement
+        showError(getString(R.string.no_internet))
     }
 
     override fun showUnableToFetchData() {
-        Toast.makeText(context, "Unable to fetch data", Toast.LENGTH_SHORT).show() // TODO implement
-    }
-
-    override fun viewLoader() {
-    }
-
-    override fun hideLoader() {
-        swipeRefreshLayout.isRefreshing = false
+        showError(getString(R.string.server_error))
     }
 
     override fun openArticle(article: Article) {
         findNavController().navigate(
             ArticleListFragmentDirections.actionNewsListFragmentToArticleFragment(article)
         )
+    }
+
+    override fun viewLoader() {
+        (groupError as Group).visibility = View.GONE
+        (groupLoader as Group).visibility = View.VISIBLE
+    }
+
+    override fun hideLoader() {
+        swipeRefreshLayout.isRefreshing = false
+        (groupLoader as Group).visibility = View.GONE
+    }
+
+    private fun showError(message: String) {
+        textViewError.text = message
+        (groupError as Group).visibility = View.VISIBLE
+        (groupList as Group).visibility = View.GONE
     }
 }
