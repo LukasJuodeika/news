@@ -58,6 +58,16 @@ class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener,
         view.recycler.adapter = adapter
     }
 
+    override fun onStart() {
+        super.onStart()
+        presenter.onAttach()
+    }
+
+    override fun onStop() {
+        presenter.onDetach()
+        super.onStop()
+    }
+
     override fun onItemClick(article: Article) {
         presenter.itemClick(article)
     }
