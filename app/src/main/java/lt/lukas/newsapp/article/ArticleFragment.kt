@@ -26,6 +26,7 @@ class ArticleFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_article, container, false)
         view.collapsingToolbar.setExpandedTitleColor(Color.TRANSPARENT)
+        view.toolbar.setNavigationOnClickListener { activity?.onBackPressed()}
         loadArticle(view, args.article)
         return view
     }
