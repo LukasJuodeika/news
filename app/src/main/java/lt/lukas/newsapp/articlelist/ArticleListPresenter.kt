@@ -39,8 +39,4 @@ class ArticleListPresenter(
                 })
         )
     }
-
-    override fun itemClick(article: Article) {
-        view.openArticle(article)
-    }
 }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.article_list_item.view.*
@@ -38,16 +39,17 @@ class ArticleListAdapter(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun setData(article: Article) {
-            Glide.with(context).load(article.urlToImage).into(itemView.imageViewThumbnail)
             itemView.textViewTitle.text = article.title
             itemView.textViewDate.text = article.publishedAt
             itemView.setOnClickListener {
-                listener.onItemClick(article)
+                listener.onItemClick(it, article)
             }
+            itemView.imageViewThumbnail.transitionName = article.url
+            Glide.with(context).load(article.urlToImage).into(itemView.imageViewThumbnail)
         }
     }
 
     interface OnItemClickListener {
-        fun onItemClick(article: Article)
+        fun onItemClick(view: View, article: Article)
     }
 }

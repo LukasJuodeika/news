@@ -72,8 +72,8 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$versions.glide"
     kapt "com.github.bumptech.glide:compiler:$versions.glide"
     implementation "com.google.android.material:material:$versions.material"
+    implementation "androidx.navigation:navigation-ui-ktx:$versions.nav_version"
     implementation "androidx.coordinatorlayout:coordinatorlayout:$versions.coordinator"
-    implementation "joda-time:joda-time:$versions.joda_time"
 
     testImplementation "junit:junit:$versions.junit"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockito_kotlin}"

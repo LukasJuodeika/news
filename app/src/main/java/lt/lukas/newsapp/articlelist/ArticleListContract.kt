@@ -11,8 +11,6 @@ interface ArticleListContract {
         fun viewLoader()
 
         fun hideLoader()
-
-        fun openArticle(article: Article)
     }
 
     interface Presenter {
@@ -21,7 +19,5 @@ interface ArticleListContract {
         fun onDetach()
 
         fun refreshData()
-
-        fun itemClick(article: Article)
     }
 }
