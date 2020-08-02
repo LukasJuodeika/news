@@ -62,11 +62,6 @@ class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener,
             Schedulers.io(),
             AndroidSchedulers.mainThread()
         )
-        if (articles != null) {
-            viewArticles(articles!!)
-        } else {
-            presenter.refreshData()
-        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -92,6 +87,11 @@ class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener,
     override fun onStart() {
         super.onStart()
         presenter.onAttach()
+        if (articles != null) {
+            viewArticles(articles!!)
+        } else {
+            presenter.refreshData()
+        }
     }
 
     override fun onStop() {
