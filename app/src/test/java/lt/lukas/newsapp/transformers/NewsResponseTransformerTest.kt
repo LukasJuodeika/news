@@ -10,7 +10,7 @@ import org.junit.Test
 class NewsResponseTransformerTest {
 
     @Test
-    fun itemTransformation() {
+    fun responseToArticles_oneValidArticle() {
 
         // Assemble
         val response = NewsResponse(
@@ -38,7 +38,7 @@ class NewsResponseTransformerTest {
     }
 
     @Test
-    fun valid() {
+    fun responseToArticles_twoValidArticles() {
 
         // Assemble
         val response = NewsResponse(
@@ -59,7 +59,7 @@ class NewsResponseTransformerTest {
     }
 
     @Test
-    fun filterNulls() {
+    fun responseToArticles_filterNulls() {
 
         // Assemble
         val response = NewsResponse(
@@ -81,7 +81,7 @@ class NewsResponseTransformerTest {
     }
 
     @Test
-    fun emptyList() {
+    fun responseToArticles_emptyList() {
 
         // Assemble
         val response = NewsResponse(
