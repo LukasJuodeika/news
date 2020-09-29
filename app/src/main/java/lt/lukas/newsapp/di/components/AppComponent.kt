@@ -1,4 +1,4 @@
-package lt.lukas.newsapp.di.commponents
+package lt.lukas.newsapp.di.components
 
 import android.app.Application
 import dagger.BindsInstance

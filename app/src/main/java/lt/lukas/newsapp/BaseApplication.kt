@@ -2,8 +2,8 @@ package lt.lukas.newsapp
 
 import android.app.Application
 import android.content.Context
-import lt.lukas.newsapp.di.commponents.AppComponent
-import lt.lukas.newsapp.di.commponents.DaggerAppComponent
+import lt.lukas.newsapp.di.components.AppComponent
+import lt.lukas.newsapp.di.components.DaggerAppComponent
 import timber.log.Timber
 
 class BaseApplication : Application() {
