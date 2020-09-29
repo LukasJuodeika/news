@@ -5,10 +5,12 @@ import dagger.BindsInstance
 import dagger.Component
 import lt.lukas.newsapp.BaseApplication
 import lt.lukas.newsapp.MainActivity
+import lt.lukas.newsapp.article.ArticleFragment
 import lt.lukas.newsapp.di.modules.NetworkModule
 import lt.lukas.newsapp.di.modules.ServiceModule
 import lt.lukas.newsapp.di.modules.StorageModule
 import lt.lukas.newsapp.articlelist.ArticleListFragment
+import lt.lukas.newsapp.di.modules.AppModule
 import javax.inject.Singleton
 
 @Singleton
@@ -16,7 +18,8 @@ import javax.inject.Singleton
     modules = [
         NetworkModule::class,
         ServiceModule::class,
-        StorageModule::class
+        StorageModule::class,
+        AppModule::class
     ]
 )
 interface AppComponent {
@@ -33,4 +36,5 @@ interface AppComponent {
     fun inject(app: BaseApplication)
     fun inject(mainActivity: MainActivity)
     fun inject(articleListFragment: ArticleListFragment)
+    fun inject(articleFragment: ArticleFragment)
 }
