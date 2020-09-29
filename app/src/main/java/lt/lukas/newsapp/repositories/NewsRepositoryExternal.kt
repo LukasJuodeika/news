@@ -3,7 +3,7 @@ package lt.lukas.newsapp.repositories
 import io.reactivex.Single
 import lt.lukas.newsapp.entities.Article
 import lt.lukas.newsapp.network.NewsService
-import lt.lukas.newsapp.transformers.NewsResponseTranformer
+import lt.lukas.newsapp.transformers.NewsResponseTransformer
 
 class NewsRepositoryExternal(
     private val newsService: NewsService
@@ -11,7 +11,7 @@ class NewsRepositoryExternal(
 
     override fun fetchTopHeadlines(): Single<List<Article>> {
         return newsService.getTopHeadlines().map {
-            NewsResponseTranformer.responseToArticles(it)
+            NewsResponseTransformer.responseToArticles(it)
         }
     }
 }

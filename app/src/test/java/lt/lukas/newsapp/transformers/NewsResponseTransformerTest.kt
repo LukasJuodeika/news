@@ -22,7 +22,7 @@ class NewsResponseTransformerTest {
         )
 
         // Act
-        val articles = NewsResponseTranformer.responseToArticles(response)
+        val articles = NewsResponseTransformer.responseToArticles(response)
 
         // Assert
         assertThat(articles).containsOnly(
@@ -51,7 +51,7 @@ class NewsResponseTransformerTest {
         )
 
         // Act
-        val articles = NewsResponseTranformer.responseToArticles(response)
+        val articles = NewsResponseTransformer.responseToArticles(response)
 
         // Assert
         assertThat(articles).hasSize(2)
@@ -73,7 +73,7 @@ class NewsResponseTransformerTest {
         )
 
         // Act
-        val articles = NewsResponseTranformer.responseToArticles(response)
+        val articles = NewsResponseTransformer.responseToArticles(response)
 
         // Assert
         assertThat(articles).hasSize(2)
@@ -91,7 +91,7 @@ class NewsResponseTransformerTest {
         )
 
         // Act
-        val articles = NewsResponseTranformer.responseToArticles(response)
+        val articles = NewsResponseTransformer.responseToArticles(response)
 
         // Assert
         assertThat(articles).isEmpty()
