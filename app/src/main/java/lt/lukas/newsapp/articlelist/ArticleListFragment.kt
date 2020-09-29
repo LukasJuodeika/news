@@ -127,7 +127,8 @@ class ArticleListFragment : Fragment(), ArticleListAdapter.OnItemClickListener,
 
     override fun viewLoader() {
         groupError.visibility = View.GONE
-        groupLoader.visibility = View.VISIBLE
+        if (!swipeRefreshLayout.isRefreshing)
+            groupLoader.visibility = View.VISIBLE
     }
 
     override fun hideLoader() {
